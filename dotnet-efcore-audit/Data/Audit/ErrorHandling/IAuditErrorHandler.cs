@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
 using System;
 
-namespace Unctad.eRegulations.Library.Data.Audit.ErrorHandling;
+namespace Data.Audit.ErrorHandling;
 
 /// <summary>
 /// Interface for handling audit-related errors.

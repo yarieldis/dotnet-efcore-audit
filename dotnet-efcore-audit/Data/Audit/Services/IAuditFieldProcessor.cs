@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Unctad.eRegulations.Library.Model;
+using Model;
 
-namespace Unctad.eRegulations.Library.Data.Audit.Services;
+namespace Data.Audit.Services;
 
 /// <summary>
 /// Interface for processing audit fields.

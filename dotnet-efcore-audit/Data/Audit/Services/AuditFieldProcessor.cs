@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Unctad.eRegulations.Library.Data.Audit.Caching;
-using Unctad.eRegulations.Library.Data.Audit.TypeHandlers;
-using Unctad.eRegulations.Library.Model;
+using Data.Audit.Caching;
+using Data.Audit.TypeHandlers;
+using Model;
 
-namespace Unctad.eRegulations.Library.Data.Audit.Services;
+namespace Data.Audit.Services;
 
 /// <summary>
 /// Implementation of IAuditFieldProcessor.

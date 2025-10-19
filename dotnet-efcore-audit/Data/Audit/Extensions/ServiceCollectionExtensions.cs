@@ -2,13 +2,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
 using System.Linq;
-using Unctad.eRegulations.Library.Data.Audit.Caching;
-using Unctad.eRegulations.Library.Data.Audit.Configuration;
-using Unctad.eRegulations.Library.Data.Audit.ErrorHandling;
-using Unctad.eRegulations.Library.Data.Audit.Services;
-using Unctad.eRegulations.Library.Data.Audit.TypeHandlers;
+using Data.Audit.Caching;
+using Data.Audit.Configuration;
+using Data.Audit.ErrorHandling;
+using Data.Audit.Services;
+using Data.Audit.TypeHandlers;
 
-namespace Unctad.eRegulations.Library.Data.Audit.Extensions;
+namespace Data.Audit.Extensions;
 
 /// <summary>
 /// Extension methods for configuring audit services in the DI container.

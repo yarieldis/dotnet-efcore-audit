@@ -6,13 +6,13 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Unctad.eRegulations.Library.Data.Audit.Configuration;
-using Unctad.eRegulations.Library.Data.Audit.Context;
-using Unctad.eRegulations.Library.Data.Audit.ErrorHandling;
-using Unctad.eRegulations.Library.Data.Audit.Services;
-using Unctad.eRegulations.Library.Model;
+using Data.Audit.Configuration;
+using Data.Audit.Context;
+using Data.Audit.ErrorHandling;
+using Data.Audit.Services;
+using Model;
 
-namespace Unctad.eRegulations.Library.Data.Audit;
+namespace Data.Audit;
 
 /// <summary>
 /// Entity Framework interceptor for auditing changes to entities that implement IAuditable.

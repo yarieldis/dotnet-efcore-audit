@@ -1,4 +1,4 @@
-﻿namespace Unctad.eRegulations.Library.Data.Audit;
+﻿namespace Data.Audit;
 
 public enum AuditAction : byte
 {

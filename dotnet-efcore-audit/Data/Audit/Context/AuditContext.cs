@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
-using Unctad.eRegulations.Library.Model;
+using Model;
 
-namespace Unctad.eRegulations.Library.Data.Audit.Context;
+namespace Data.Audit.Context;
 
 /// <summary>
 /// Provides context information for audit operations.

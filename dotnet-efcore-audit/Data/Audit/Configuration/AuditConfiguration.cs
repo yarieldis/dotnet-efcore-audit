@@ -1,4 +1,4 @@
-namespace Unctad.eRegulations.Library.Data.Audit.Configuration;
+namespace Data.Audit.Configuration;
 
 /// <summary>
 /// Configuration settings for the audit system.

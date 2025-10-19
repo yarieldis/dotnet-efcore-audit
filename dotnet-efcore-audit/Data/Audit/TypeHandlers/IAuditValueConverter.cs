@@ -1,7 +1,7 @@
 using System;
-using Unctad.eRegulations.Library.Model;
+using Model;
 
-namespace Unctad.eRegulations.Library.Data.Audit.TypeHandlers;
+namespace Data.Audit.TypeHandlers;
 
 /// <summary>
 /// Interface for converting audit values to the appropriate AuditRecordField properties.

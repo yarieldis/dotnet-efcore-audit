@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unctad.eRegulations.Library.Model;
+using Model;
 
-namespace Unctad.eRegulations.Library.Data.Audit.TypeHandlers;
+namespace Data.Audit.TypeHandlers;
 
 /// <summary>
 /// Implementation of IAuditValueConverter that uses a collection of type handlers.

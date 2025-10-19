@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Linq;
 using System.Reflection;
 
-namespace Unctad.eRegulations.Library.Data.Audit.Caching;
+namespace Data.Audit.Caching;
 
 /// <summary>
 /// Implementation of IAuditPropertyCache that provides caching for audit property information.

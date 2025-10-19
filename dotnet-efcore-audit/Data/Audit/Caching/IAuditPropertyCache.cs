@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace Unctad.eRegulations.Library.Data.Audit.Caching;
+namespace Data.Audit.Caching;
 
 /// <summary>
 /// Interface for caching audit-related property information.

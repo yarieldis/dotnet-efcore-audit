@@ -1,6 +1,6 @@
-using Unctad.eRegulations.Library.Model;
+using Model;
 
-namespace Unctad.eRegulations.Library.Data.Audit.Services;
+namespace Data.Audit.Services;
 
 /// <summary>
 /// Interface for creating audit records.

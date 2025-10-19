@@ -8,15 +8,15 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using Unctad.eRegulations.Library.Data.Audit.Caching;
-using Unctad.eRegulations.Library.Data.Audit.Configuration;
-using Unctad.eRegulations.Library.Data.Audit.Context;
-using Unctad.eRegulations.Library.Data.Audit.ErrorHandling;
-using Unctad.eRegulations.Library.Data.Audit.Services;
-using Unctad.eRegulations.Library.Data.Audit.TypeHandlers;
-using Unctad.eRegulations.Library.Model;
+using Data.Audit.Caching;
+using Data.Audit.Configuration;
+using Data.Audit.Context;
+using Data.Audit.ErrorHandling;
+using Data.Audit.Services;
+using Data.Audit.TypeHandlers;
+using Model;
 
-namespace Unctad.eRegulations.Library.Data.Audit.Legacy;
+namespace Data.Audit.Legacy;
 
 /// <summary>
 /// Legacy version of AuditableInterceptor that maintains backward compatibility.

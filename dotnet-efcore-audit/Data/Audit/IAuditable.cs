@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Unctad.eRegulations.Library.Data.Audit;
+namespace Data.Audit;
 
 public interface IAuditable
 {

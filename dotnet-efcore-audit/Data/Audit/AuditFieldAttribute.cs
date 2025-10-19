@@ -1,6 +1,6 @@
 using System;
 
-namespace Unctad.eRegulations.Library.Data.Audit;
+namespace Data.Audit;
 
 /// <summary>
 /// Attribute to mark fields/properties that should be tracked for auditing purposes.
