@@ -6,6 +6,10 @@ This document describes the audit system that provides a modular, testable, and 
 
 The audit system has been implemented as a modular architecture with clear separation of concerns, dependency injection support, and enhanced configurability.
 
+## What's New
+
+**Collection Auditing Support**: The audit system now supports tracking changes to child collection items. Child entities implementing `IAuditableCollection` can be audited alongside their parent `IAuditable` entities. Use the `AuditCollectionFieldAttribute` to mark collection navigation properties for auditing. Audit metadata (date/user) is automatically sourced from the parent entity.
+
 ## Architecture Components
 
 ### 1. Core Interfaces and Services
@@ -75,10 +79,31 @@ Encapsulates all information needed for audit processing:
 - AuditAction
 - Configuration
 
+#### `AuditCollectionItemContext`
+Provides context for auditing field-level changes on IAuditableCollection items:
+- ItemEntry and collection item reference
+- Audit metadata sourced from parent entity
+- Action type (Insert, Update, Delete)
+- Configuration
+
 #### Error Handling
 - Centralized error handling through `IAuditErrorHandler`
 - Configurable error continuation behavior
 - Structured logging for troubleshooting
+
+### 5. Collection Auditing Support
+
+#### `IAuditableCollection`
+Marker interface for child collection items owned by an IAuditable parent:
+- Items do not require ModifiedDate/ModifiedUser properties
+- Audit metadata is inherited from the parent entity
+- Tracked as association records under the parent
+
+#### `AuditCollectionFieldAttribute`
+Marks collection navigation properties that should be audited:
+- Applied to properties in the parent's [MetadataType] buddy class
+- Items implementing IAuditableCollection are captured as association audit records
+- Supports audit tracking for Add/Remove/Modify operations on collection items
 
 ## Usage
 
@@ -137,6 +162,45 @@ public class CustomTypeHandler : IAuditTypeHandler
 // Register custom handlers
 services.AddCustomAuditTypeHandlers(new CustomTypeHandler());
 ```
+
+### Collection Auditing
+
+Audit child collection items alongside their parent entities:
+
+```csharp
+// Define a collection item that implements IAuditableCollection
+public class OrderItem : IAuditableCollection
+{
+    public int Id { get; set; }
+    public string Description { get; set; }
+    public decimal Price { get; set; }
+}
+
+// Define parent entity
+public class Order : IAuditable
+{
+    public int Id { get; set; }
+    public DateTime ModifiedDate { get; set; }
+    public string ModifiedUser { get; set; }
+    public List<OrderItem> Items { get; set; } = new();
+}
+
+// Create metadata type with AuditCollectionFieldAttribute
+[MetadataType(typeof(OrderMetadata))]
+public partial class Order { }
+
+public class OrderMetadata
+{
+    [AuditCollectionField]
+    public IEnumerable<OrderItem> Items { get; set; }
+}
+```
+
+When an Order is modified and its Items collection changes:
+- Added items create audit records with AuditAction = Insert
+- Deleted items create audit records with AuditAction = Delete  
+- Modified items create field-level change records
+- Audit metadata (date/user) is sourced from the parent Order
 
 ## Benefits of the New Architecture
 
@@ -258,3 +322,40 @@ The modular architecture enables future enhancements such as:
 - Audit data encryption/decryption
 - Integration with external audit systems
 - Performance metrics and monitoring
+
+## Project Structure
+
+```
+Data/Audit/
+├── IAuditable.cs                      # Core interface for auditable entities
+├── IAuditableCollection.cs            # Interface for collection items
+├── AuditAction.cs                     # Enum: Insert, Update, Delete, etc.
+├── AuditFieldAttribute.cs             # Attribute for field-level audit config
+├── AuditCollectionFieldAttribute.cs   # Attribute for collection auditing
+├── AuditableInterceptor.cs            # Main EF Core interceptor
+├── Caching/
+│   ├── IAuditPropertyCache.cs         # Reflection cache interface
+│   └── AuditPropertyCache.cs
+├── Configuration/
+│   └── AuditConfiguration.cs          # Centralized audit settings
+├── Context/
+│   ├── AuditContext.cs                # Audit processing context
+│   └── AuditCollectionItemContext.cs  # Collection item context
+├── ErrorHandling/
+│   ├── IAuditErrorHandler.cs          # Error handling interface
+│   └── DefaultAuditErrorHandler.cs
+├── Extensions/
+│   └── ServiceCollectionExtensions.cs # DI registration
+├── Legacy/
+│   └── LegacyAuditableInterceptor.cs  # Non-DI backward-compatible
+├── Services/
+│   ├── IAuditRecordFactory.cs         # Audit record creation
+│   ├── AuditRecordFactory.cs
+│   ├── IAuditFieldProcessor.cs        # Field processing
+│   └── AuditFieldProcessor.cs
+└── TypeHandlers/
+    ├── IAuditTypeHandler.cs           # Type conversion strategy
+    ├── IAuditValueConverter.cs        # Value converter
+    ├── AuditValueConverter.cs
+    └── AuditTypeHandlers.cs           # Built-in type handlers
+```
