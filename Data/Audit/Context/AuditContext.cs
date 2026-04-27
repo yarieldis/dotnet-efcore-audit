@@ -1,6 +1,6 @@
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
-using Model;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Unctad.eRegulations.Library.Data.Audit.Configuration;
 
 namespace Data.Audit.Context;
 
@@ -11,7 +11,7 @@ public class AuditContext(
     Microsoft.EntityFrameworkCore.DbContext dbContext,
     EntityEntry<IAuditable> entityEntry,
     AuditAction action,
-    Configuration.AuditConfiguration configuration)
+    AuditConfiguration configuration)
 {
 
     /// <summary>
@@ -32,7 +32,7 @@ public class AuditContext(
     /// <summary>
     /// Gets the audit configuration.
     /// </summary>
-    public Configuration.AuditConfiguration Configuration { get; } = configuration ?? throw new ArgumentNullException(nameof(configuration));
+    public AuditConfiguration Configuration { get; } = configuration ?? throw new ArgumentNullException(nameof(configuration));
 
     /// <summary>
     /// Gets the entity being audited.

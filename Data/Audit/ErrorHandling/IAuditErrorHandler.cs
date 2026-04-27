@@ -1,5 +1,5 @@
-using Microsoft.Extensions.Logging;
 using System;
+using Data.Audit.Context;
 
 namespace Data.Audit.ErrorHandling;
 
@@ -13,7 +13,7 @@ public interface IAuditErrorHandler
     /// </summary>
     /// <param name="exception">The exception that occurred.</param>
     /// <param name="context">The audit context.</param>
-    void HandleAuditError(System.Exception exception, Context.AuditContext context);
+    void HandleAuditError(Exception exception, AuditContext context);
 
     /// <summary>
     /// Handles an error that occurred during field processing.
@@ -21,5 +21,5 @@ public interface IAuditErrorHandler
     /// <param name="exception">The exception that occurred.</param>
     /// <param name="propertyName">The name of the property being processed.</param>
     /// <param name="context">The audit context.</param>
-    void HandleFieldProcessingError(System.Exception exception, string propertyName, Context.AuditContext context);
+    void HandleFieldProcessingError(Exception exception, string propertyName, AuditContext context);
 }

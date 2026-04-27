@@ -1,7 +1,9 @@
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
 using System.Linq;
+
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+
 using Data.Audit.Caching;
 using Data.Audit.Configuration;
 using Data.Audit.ErrorHandling;
